@@ -136,7 +136,8 @@ else
     mkdir -p $cache/$ver
     cd $cache/$ver
     start "Installing $ver"
-        (curl `translate_dependency_url $ver` -s --fail -o - | tar xzf - 2>/dev/null)
+        echo `translate_dependency_url $ver`
+        (curl `translate_dependency_url $ver` --fail -o - | tar xzf -)
         if [ $? -ne 0 ]; then
           echo -e $resource_error_msg 1>&2
           exit 22
